@@ -282,6 +282,8 @@ def answer(question, g=None, config=None):
             "hop_used": 0,
             "path": [],
             "evidence": [],
+            "start_nodes": [],
+            "visited_nodes": [],
         }
 
     relation_filter = detect_relation_filter(question)
@@ -301,6 +303,8 @@ def answer(question, g=None, config=None):
             "hop_used": hop_limit,
             "path": [],
             "evidence": [],
+            "start_nodes": start_nodes,
+            "visited_nodes": list(visited),
         }
 
     context = format_evidence_context(triples, node_attrs)
@@ -320,6 +324,8 @@ def answer(question, g=None, config=None):
         "evidence": sorted(source_docs),
         "verify_issues": verify_issues,
         "truncated_hubs": truncated,
+        "start_nodes": start_nodes,
+        "visited_nodes": list(visited),
     }
 
 

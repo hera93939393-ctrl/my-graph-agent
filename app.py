@@ -3,8 +3,10 @@ import json
 import os
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from agent import BASE_DIR, answer, load_config, load_graph
+from graph_viz import render_subgraph_html
 
 st.set_page_config(page_title="eaT 심사 그래프 에이전트", page_icon="🕸️", layout="centered")
 
@@ -110,6 +112,10 @@ for result in st.session_state.history:
                 st.write(f"- {doc}")
         else:
             st.write("근거 문서 없음")
+    if result.get("visited_nodes"):
+        with st.expander(f"그래프로 보기 ({len(result['visited_nodes'])}개 노드)", expanded=False):
+            html = render_subgraph_html(g, result["visited_nodes"], result["start_nodes"])
+            components.html(html, height=500, scrolling=False)
     if result.get("truncated_hubs"):
         st.caption(f"⚠️ 허브 노드 상한(5건) 적용됨: {', '.join(set(result['truncated_hubs']))}")
     verify_issues = result.get("verify_issues")
