@@ -15,9 +15,35 @@ NODE_COLORS = {
 }
 
 
-def render_subgraph_html(g, visited_nodes, start_nodes, height="480px"):
-    """visited_nodes 로 유도된 부분그래프를 인터랙티브 HTML(문자열)로 렌더링한다."""
-    sub = g.subgraph(visited_nodes)
+def filter_nodes_by_answer(g, visited_nodes, start_nodes, answer_text):
+    """탐색 중 방문한 노드는 많지만(제출서류 13종 등 답변과 무관한 것도 다 포함),
+    실제로 답변 문장에 등장한 개체만 추리면 훨씬 읽기 쉬운 그래프가 된다.
+    시작 개체는 항상 남기고, 그 외에는 이름이 답변 텍스트 안에 문자 그대로
+    등장하는 노드만 남긴다."""
+    keep = set(start_nodes)
+    for node_id in visited_nodes:
+        name = g.nodes[node_id].get("name", "")
+        if name and name in answer_text:
+            keep.add(node_id)
+
+    # 답변이 개체명을 거의 안 썼다면(예: 요약형 문장) 시작 개체의 1홉 이웃까지는 보여준다 —
+    # 텅 빈 그래프보다는 최소한의 맥락이 낫다.
+    if len(keep) <= len(start_nodes):
+        for s in start_nodes:
+            if s in g:
+                keep.update(g.successors(s))
+                keep.update(g.predecessors(s))
+    return keep
+
+
+def render_subgraph_html(g, visited_nodes, start_nodes, answer_text=None, height="480px"):
+    """visited_nodes 로 유도된 부분그래프를 인터랙티브 HTML(문자열)로 렌더링한다.
+    answer_text 를 주면 답변에 실제로 언급된 개체만 추려서(filter_nodes_by_answer) 그린다."""
+    if answer_text:
+        nodes_to_draw = filter_nodes_by_answer(g, visited_nodes, start_nodes, answer_text)
+    else:
+        nodes_to_draw = visited_nodes
+    sub = g.subgraph(nodes_to_draw)
 
     net = Network(
         height=height, width="100%", bgcolor="#111318", font_color="#EAEAEA",
