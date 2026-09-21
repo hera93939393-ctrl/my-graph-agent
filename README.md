@@ -48,9 +48,7 @@ python agent.py "가득축산과 같은 지역본부에 등록된 다른 업체�
 예시 질문 드롭다운(골든셋 문항)을 고르면, 답변과 함께 사용한 홉 수·탄 경로(트리플)·근거 문서
 목록을 확인할 수 있다.
 
-> 이 세션에서 Streamlit 앱을 브라우저로 직접 띄워 질문→답변→경로/근거 표시까지 정상 동작을
-> 확인했다. 제출용 캡처 이미지는 로컬에서 `streamlit run app.py` 실행 후 화면을 캡처해
-> `assets/` 폴더에 추가할 것 (예: `assets/demo_screenshot.png`, 이 README에서 링크).
+![데모 화면](assets/demo_screenshot.png)
 
 ## 프로젝트 구조
 
