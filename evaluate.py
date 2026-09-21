@@ -91,6 +91,13 @@ def fact_exists_anywhere_in_graph(g, expected_evidence):
     return False
 
 
+def normalize_for_compare(s):
+    """'이용제한_1개월'(코드) 과 '이용제한 1개월'(LLM 자연어)처럼 밑줄/공백 표기만
+    다른 걸 같은 문자열로 보기 위한 정규화. 실제로 이 차이 때문에 정상 답변이
+    '생성 실패'로 오분류되는 걸 겪고 나서 추가했다."""
+    return s.replace("_", "").replace(" ", "")
+
+
 def classify_failure(item, result, g):
     """평가recall이 1.0 미만인 문항의 실패 층을 가른다."""
     expected_evidence = set(item["evidence"])
@@ -99,7 +106,8 @@ def classify_failure(item, result, g):
     if not missing:
         # 근거는 다 모았는데 최종 답변 문장에 핵심 키워드가 안 보이면 생성 단계 문제
         key_terms = [t for t in re.split(r"[,;() ]+", item["expected_answer"]) if len(t) >= 2]
-        if key_terms and not any(t in result["answer"] for t in key_terms):
+        answer_norm = normalize_for_compare(result["answer"])
+        if key_terms and not any(normalize_for_compare(t) in answer_norm for t in key_terms):
             return "생성"
         return None  # 정상
     if not fact_exists_anywhere_in_graph(g, missing):
