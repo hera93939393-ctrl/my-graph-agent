@@ -36,6 +36,13 @@ python evaluate.py
 streamlit run app.py
 ```
 
+`evaluate.py`의 채점 함수(`classify_failure` 등) 자체가 맞게 판정하는지는 `test_evaluate.py`로 따로 검증한다
+(실제로 채점 로직이 정상 답변을 "생성 실패"로 오분류한 적이 있어서, 그 사고를 회귀 테스트로 남겨뒀다):
+
+```bash
+pytest test_evaluate.py -v
+```
+
 CLI로 단발 질문만 던져보고 싶으면:
 
 ```bash
