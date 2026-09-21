@@ -1,0 +1,38 @@
+{
+  "domain": "eaT 공공급식통합플랫폼 공급업체 등록심사 (서류심사·현장심사)",
+  "node_types": [
+    "SupplyCompany",
+    "RegionalOffice",
+    "HandlingItem",
+    "Certification",
+    "DocumentType",
+    "ViolationType",
+    "Sanction",
+    "Regulation"
+  ],
+  "relation_types": [
+    ["SupplyCompany", "LOCATED_IN", "RegionalOffice"],
+    ["SupplyCompany", "HANDLES", "HandlingItem"],
+    ["SupplyCompany", "HOLDS", "Certification"],
+    ["SupplyCompany", "SUBMITTED", "DocumentType"],
+    ["SupplyCompany", "VIOLATED", "ViolationType"],
+    ["ViolationType", "RESULTS_IN", "Sanction"],
+    ["HandlingItem", "REQUIRES", "Certification"],
+    ["DocumentType", "GOVERNED_BY", "Regulation"]
+  ],
+  "excluded_relations": {
+    "note": "심사원 개인/실제 업체명 등 식별정보는 노드로 만들지 않는다 (합성 데이터 + 공개 기준 문서만 사용, 실제 민원인·업체 비공개 원칙과 충돌 방지)"
+  },
+  "hop_limit": 2,
+  "hub_node_policy": "SupplyCompany가 아닌 모든 노드(RegionalOffice·DocumentType·Certification·HandlingItem·ViolationType·Sanction·Regulation)는 수십 개 업체가 동시에 연결되는 허브가 될 수 있다. 앵커 업체 자신의 직접 사실(제출서류 등)은 전부 보여주되, 그런 허브 노드를 거쳐 '다른 업체'로 되짚어 나갈 때만 상한(5건)을 두어 사실상 전수조사가 되는 것을 막는다.",
+  "hub_cap": 5,
+  "vocab": {
+    "regional_offices": ["서울지역본부", "경기지역본부", "인천지역본부", "강원지역본부", "충북지역본부", "전북지역본부", "전남지역본부", "경북지역본부", "경남지역본부", "제주지역본부"],
+    "handling_items": ["농산물", "수산물", "축산물", "가금류", "가공식품", "김치류", "우유류", "곡류", "빵류", "떡류"],
+    "certifications": ["HACCP(농산물)", "HACCP(수산물)", "HACCP(축산물)", "HACCP(가금류)", "HACCP(김치류)", "HACCP(우유류)", "친환경인증", "G마크", "전통식품인증", "무인증"],
+    "document_types": ["사업자등록증", "법인등기부등본", "주민등록등본", "사업장확인서", "창고확인서", "자동차등록증", "차량보험가입증권", "생산물배상책임보험증권", "건강진단결과서", "소독필증", "영업신고증", "영업허가증", "위생교육수료증"],
+    "violation_types": ["주민등록번호_미마스킹", "원본대조필_누락", "서류_유효기간_만료", "소재지_불일치", "열람용_등기부등본_제출", "현장심사_수진자_자격미달", "옥외_탈부착간판", "타업체와_사업장_미분리", "창고_공동사용", "야외창고_사용", "냉장냉동_미분리", "냉장온도_기준초과", "냉동온도_기준초과", "방충방서시설_미비", "정기소독_미실시", "건강진단서_미구비"],
+    "sanctions": ["서류_보완요청", "현장심사_불합격", "등록_보류", "이용제한_1개월", "이용제한_3개월"],
+    "regulations": ["학교급식법_시행규칙", "식품위생법", "축산물_위생관리법", "화물자동차_운수사업법", "감염병의_예방및관리에관한법률_시행규칙", "eaT_이용약관"]
+  }
+}

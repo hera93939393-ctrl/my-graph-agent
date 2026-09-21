@@ -1,0 +1,28 @@
+{
+  "per_hop": {
+    "0": {
+      "n": 0,
+      "graphrag_evidence_recall_avg": null,
+      "basic_rag_evidence_recall_avg": null,
+      "graphrag_path_recall_avg": null
+    },
+    "1": {
+      "n": 3,
+      "graphrag_evidence_recall_avg": 1.0,
+      "basic_rag_evidence_recall_avg": 1.0,
+      "graphrag_path_recall_avg": 0.3333333333333333
+    },
+    "2": {
+      "n": 8,
+      "graphrag_evidence_recall_avg": 0.9791666666666666,
+      "basic_rag_evidence_recall_avg": 0.6041666666666666,
+      "graphrag_path_recall_avg": 0.7291666666666666
+    }
+  },
+  "failure_layer_counts": {
+    "색인": 0,
+    "탐색": 1,
+    "생성": 1
+  },
+  "total_questions": 12
+}
