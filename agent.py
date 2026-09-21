@@ -198,6 +198,15 @@ def fallback_answer(question, triples, node_attrs, source_docs):
     return "\n".join(lines)
 
 
+VERIFY_SYSTEM_PROMPT = """당신은 답변 검증기입니다. 아래 근거(삼중항·노드속성)만 보고 draft_answer의 각 문장이
+근거로 뒷받침되는지 하나씩 대조하세요.
+- 여러 개체(업체 등)에 대한 답변이면, 각 개체의 사실이 실제로 그 개체의 삼중항과 정확히 일치하는지
+  확인하세요 — 한 개체의 사실을 다른 개체에게도 해당된다고 일반화한 부분이 있으면 반드시 잡아내세요.
+- 근거로 뒷받침되지 않는 주장은 제거하거나 "모른다"로 바꿔 다시 쓰세요.
+- JSON으로만 답하세요: {"grounded": true|false, "issues": ["짧은 문제 설명", ...], "revised_answer": "근거만으로 다시 쓴 최종 답변 (마지막 줄에 근거: 줄 유지)"}
+- draft_answer가 처음부터 전부 근거로 뒷받침됐다면 grounded=true, issues=[], revised_answer는 draft_answer와 동일하게 반환하세요."""
+
+
 def call_llm(question, context):
     try:
         from dotenv import load_dotenv
@@ -219,6 +228,44 @@ def call_llm(question, context):
     except Exception as e:
         print(f"  (LLM 호출 실패, 규칙 기반 요약으로 대체: {e})")
         return None
+
+
+def call_verify(question, context, draft_answer):
+    """생성 후처리 검증. draft_answer의 각 문장이 근거 삼중항과 실제로 대응하는지
+    별도 LLM 호출로 다시 대조한다 — 근거는 100% 맞게 모았는데 답변 문장이 여러 업체의
+    서로 다른 사실을 하나로 뭉뚱그리는 식의 생성 단계 환각을 잡기 위한 단계다
+    (REPORT.md 3절 참고: 근거 재현율 1.0인데도 이런 환각이 실제로 발생한 적이 있다).
+    검증 호출 자체가 실패하면 원래 답변을 그대로 쓴다 — 후처리가 안 된다고 답변 자체를
+    막을 이유는 없다."""
+    try:
+        import json as _json
+
+        from dotenv import load_dotenv
+        from openai import OpenAI
+
+        load_dotenv()
+        if not os.environ.get("OPENAI_API_KEY"):
+            return draft_answer, None
+        client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+        response = client.chat.completions.create(
+            model=MODEL,
+            temperature=0,
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": VERIFY_SYSTEM_PROMPT},
+                {
+                    "role": "user",
+                    "content": f"질문: {question}\n\n{context}\n\ndraft_answer:\n{draft_answer}",
+                },
+            ],
+        )
+        result = _json.loads(response.choices[0].message.content)
+        revised = result.get("revised_answer") or draft_answer
+        issues = result.get("issues") or []
+        return revised, issues
+    except Exception as e:
+        print(f"  (검증 호출 실패, 원래 답변 유지: {e})")
+        return draft_answer, None
 
 
 def answer(question, g=None, config=None):
@@ -258,7 +305,12 @@ def answer(question, g=None, config=None):
 
     context = format_evidence_context(triples, node_attrs)
     llm_answer = call_llm(question, context)
-    final_answer = llm_answer or fallback_answer(question, triples, node_attrs, source_docs)
+
+    verify_issues = None
+    if llm_answer:
+        final_answer, verify_issues = call_verify(question, context, llm_answer)
+    else:
+        final_answer = fallback_answer(question, triples, node_attrs, source_docs)
 
     return {
         "question": question,
@@ -266,6 +318,7 @@ def answer(question, g=None, config=None):
         "hop_used": hop_used,
         "path": [f"{s} -[{r}]-> {o}" for s, r, o, _ in triples],
         "evidence": sorted(source_docs),
+        "verify_issues": verify_issues,
         "truncated_hubs": truncated,
     }
 

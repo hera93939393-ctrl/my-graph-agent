@@ -112,3 +112,8 @@ for result in st.session_state.history:
             st.write("근거 문서 없음")
     if result.get("truncated_hubs"):
         st.caption(f"⚠️ 허브 노드 상한(5건) 적용됨: {', '.join(set(result['truncated_hubs']))}")
+    verify_issues = result.get("verify_issues")
+    if verify_issues:
+        st.caption(f"🔍 검증 단계에서 수정됨: {'; '.join(verify_issues)}")
+    elif verify_issues == []:
+        st.caption("🔍 검증 완료 — 근거와 대조해 수정할 부분 없음")
