@@ -31,6 +31,16 @@ st.markdown(
         background: #EDF3FE; color: #2354C4; border-color: #AFC8F5; margin-right: 6px;
     }
     .gr-path-line { font-family: "Consolas", monospace; font-size: 0.82rem; color: #333; }
+    div[data-testid="stSelectbox"] label {
+        color: #999 !important; font-size: 0.8rem !important;
+    }
+    div[data-testid="stSelectbox"] div[role="group"] {
+        background-color: #F4F4F2 !important;
+        border-color: #E4E3DE !important;
+    }
+    div[data-testid="stSelectbox"] input {
+        color: #999 !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -65,11 +75,8 @@ example_questions = [item["question"] for item in goldenset]
 if "history" not in st.session_state:
     st.session_state.history = []
 
-col1, col2 = st.columns([3, 1])
-with col1:
-    question = st.text_input("질문을 입력하세요", placeholder="예: 가득축산과 같은 지역본부에 등록된 다른 업체는 어디인가?")
-with col2:
-    picked = st.selectbox("예시 질문", ["(직접 입력)"] + example_questions, label_visibility="visible")
+question = st.text_input("질문을 입력하세요", placeholder="예: 가득축산과 같은 지역본부에 등록된 다른 업체는 어디인가?")
+picked = st.selectbox("예시 질문 (참고용)", ["(직접 입력)"] + example_questions, label_visibility="visible")
 
 if picked != "(직접 입력)":
     question = picked
