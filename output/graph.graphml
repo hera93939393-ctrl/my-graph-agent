@@ -732,6 +732,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">가득축산.md</data>
 </edge>
+<edge source="SupplyCompany::가득축산" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">가득축산.md</data>
+</edge>
 <edge source="HandlingItem::가금류" target="Certification::HACCP">
   <data key="d9">REQUIRES</data>
   <data key="d10">공급업체_서류심사_세부기준.md</data>
@@ -1012,6 +1016,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">구름물류.md</data>
 </edge>
+<edge source="SupplyCompany::구름물류" target="Sanction::등록_보류">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">구름물류.md</data>
+</edge>
 <edge source="Certification::HACCP(축산물)" target="Certification::HACCP">
   <data key="d9">IS_A</data>
   <data key="d10">normalization</data>
@@ -1260,6 +1268,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">다솜물류.md</data>
 </edge>
+<edge source="SupplyCompany::다솜물류" target="Sanction::등록_보류">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">다솜물류.md</data>
+</edge>
 <edge source="HandlingItem::농산물" target="Certification::HACCP">
   <data key="d9">REQUIRES</data>
   <data key="d10">공급업체_서류심사_세부기준.md</data>
@@ -1362,6 +1374,10 @@
 </edge>
 <edge source="SupplyCompany::다온식품" target="ViolationType::원본대조필_누락">
   <data key="d9">VIOLATED</data>
+  <data key="d10">다온식품.md</data>
+</edge>
+<edge source="SupplyCompany::다온식품" target="Sanction::현장심사_불합격">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">다온식품.md</data>
 </edge>
 <edge source="ViolationType::원본대조필_누락" target="Sanction::현장심사_불합격">
@@ -1496,6 +1512,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">다정푸드.md</data>
 </edge>
+<edge source="SupplyCompany::다정푸드" target="Sanction::서류_보완요청">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">다정푸드.md</data>
+</edge>
 <edge source="ViolationType::주민등록번호_미마스킹" target="Sanction::서류_보완요청">
   <data key="d9">RESULTS_IN</data>
   <data key="d10">다정푸드.md</data>
@@ -1604,6 +1624,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">든든축산.md</data>
 </edge>
+<edge source="SupplyCompany::든든축산" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">든든축산.md</data>
+</edge>
 <edge source="SupplyCompany::든윤농산" target="RegionalOffice::전남지역본부">
   <data key="d9">LOCATED_IN</data>
   <data key="d10">든윤농산.md</data>
@@ -1670,6 +1694,10 @@
 </edge>
 <edge source="SupplyCompany::든윤농산" target="ViolationType::야외창고_사용">
   <data key="d9">VIOLATED</data>
+  <data key="d10">든윤농산.md</data>
+</edge>
+<edge source="SupplyCompany::든윤농산" target="Sanction::현장심사_불합격">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">든윤농산.md</data>
 </edge>
 <edge source="Certification::HACCP(우유류)" target="Certification::HACCP">
@@ -1752,6 +1780,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">미소유통.md</data>
 </edge>
+<edge source="SupplyCompany::미소유통" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">미소유통.md</data>
+</edge>
 <edge source="HandlingItem::우유류" target="Certification::HACCP">
   <data key="d9">REQUIRES</data>
   <data key="d10">공급업체_서류심사_세부기준.md</data>
@@ -1830,6 +1862,10 @@
 </edge>
 <edge source="SupplyCompany::미소팜" target="ViolationType::타업체와_사업장_미분리">
   <data key="d9">VIOLATED</data>
+  <data key="d10">미소팜.md</data>
+</edge>
+<edge source="SupplyCompany::미소팜" target="Sanction::등록_보류">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">미소팜.md</data>
 </edge>
 <edge source="HandlingItem::축산물" target="Certification::HACCP">
@@ -1916,6 +1952,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">바른키친.md</data>
 </edge>
+<edge source="SupplyCompany::바른키친" target="Sanction::이용제한_3개월">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">바른키친.md</data>
+</edge>
 <edge source="SupplyCompany::바른푸드" target="RegionalOffice::전남지역본부">
   <data key="d9">LOCATED_IN</data>
   <data key="d10">바른푸드.md</data>
@@ -1986,6 +2026,10 @@
 </edge>
 <edge source="SupplyCompany::바른푸드" target="ViolationType::타업체와_사업장_미분리">
   <data key="d9">VIOLATED</data>
+  <data key="d10">바른푸드.md</data>
+</edge>
+<edge source="SupplyCompany::바른푸드" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">바른푸드.md</data>
 </edge>
 <edge source="HandlingItem::빵류" target="Certification::HACCP">
@@ -2068,6 +2112,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">밝은물류.md</data>
 </edge>
+<edge source="SupplyCompany::밝은물류" target="Sanction::등록_보류">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">밝은물류.md</data>
+</edge>
 <edge source="ViolationType::옥외_탈부착간판" target="Sanction::등록_보류">
   <data key="d9">RESULTS_IN</data>
   <data key="d10">밝은물류.md</data>
@@ -2142,6 +2190,10 @@
 </edge>
 <edge source="SupplyCompany::밝은푸드" target="ViolationType::냉동온도_기준초과">
   <data key="d9">VIOLATED</data>
+  <data key="d10">밝은푸드.md</data>
+</edge>
+<edge source="SupplyCompany::밝은푸드" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">밝은푸드.md</data>
 </edge>
 <edge source="ViolationType::냉동온도_기준초과" target="Sanction::이용제한_1개월">
@@ -2270,6 +2322,10 @@
 </edge>
 <edge source="SupplyCompany::새순유통" target="ViolationType::냉동온도_기준초과">
   <data key="d9">VIOLATED</data>
+  <data key="d10">새순유통.md</data>
+</edge>
+<edge source="SupplyCompany::새순유통" target="Sanction::등록_보류">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">새순유통.md</data>
 </edge>
 <edge source="SupplyCompany::새힘팜" target="RegionalOffice::제주지역본부">
@@ -2500,6 +2556,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">솔빛유통.md</data>
 </edge>
+<edge source="SupplyCompany::솔빛유통" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">솔빛유통.md</data>
+</edge>
 <edge source="SupplyCompany::온누리키친" target="RegionalOffice::강원지역본부">
   <data key="d9">LOCATED_IN</data>
   <data key="d10">온누리키친.md</data>
@@ -2558,6 +2618,10 @@
 </edge>
 <edge source="SupplyCompany::온누리키친" target="ViolationType::냉장온도_기준초과">
   <data key="d9">VIOLATED</data>
+  <data key="d10">온누리키친.md</data>
+</edge>
+<edge source="SupplyCompany::온누리키친" target="Sanction::서류_보완요청">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">온누리키친.md</data>
 </edge>
 <edge source="SupplyCompany::온누리푸드" target="RegionalOffice::충북지역본부">
@@ -2684,6 +2748,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">옹달샘축산.md</data>
 </edge>
+<edge source="SupplyCompany::옹달샘축산" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">옹달샘축산.md</data>
+</edge>
 <edge source="SupplyCompany::우리수산" target="RegionalOffice::제주지역본부">
   <data key="d9">LOCATED_IN</data>
   <data key="d10">우리수산.md</data>
@@ -2750,6 +2818,10 @@
 </edge>
 <edge source="SupplyCompany::우리수산" target="ViolationType::냉장냉동_미분리">
   <data key="d9">VIOLATED</data>
+  <data key="d10">우리수산.md</data>
+</edge>
+<edge source="SupplyCompany::우리수산" target="Sanction::등록_보류">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">우리수산.md</data>
 </edge>
 <edge source="ViolationType::냉장냉동_미분리" target="Sanction::등록_보류">
@@ -2866,6 +2938,10 @@
 </edge>
 <edge source="SupplyCompany::은비팜" target="ViolationType::건강진단서_미구비">
   <data key="d9">VIOLATED</data>
+  <data key="d10">은비팜.md</data>
+</edge>
+<edge source="SupplyCompany::은비팜" target="Sanction::이용제한_3개월">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">은비팜.md</data>
 </edge>
 <edge source="SupplyCompany::정갈농산" target="RegionalOffice::인천지역본부">
@@ -3048,6 +3124,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">정성팜.md</data>
 </edge>
+<edge source="SupplyCompany::정성팜" target="Sanction::서류_보완요청">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">정성팜.md</data>
+</edge>
 <edge source="SupplyCompany::참축산" target="RegionalOffice::제주지역본부">
   <data key="d9">LOCATED_IN</data>
   <data key="d10">참축산.md</data>
@@ -3112,6 +3192,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">참축산.md</data>
 </edge>
+<edge source="SupplyCompany::참축산" target="Sanction::서류_보완요청">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">참축산.md</data>
+</edge>
 <edge source="ViolationType::창고_공동사용" target="Sanction::서류_보완요청">
   <data key="d9">RESULTS_IN</data>
   <data key="d10">참축산.md</data>
@@ -3174,6 +3258,10 @@
 </edge>
 <edge source="SupplyCompany::참푸드" target="ViolationType::서류_유효기간_만료">
   <data key="d9">VIOLATED</data>
+  <data key="d10">참푸드.md</data>
+</edge>
+<edge source="SupplyCompany::참푸드" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">참푸드.md</data>
 </edge>
 <edge source="SupplyCompany::청솔키친" target="RegionalOffice::전남지역본부">
@@ -3250,6 +3338,10 @@
 </edge>
 <edge source="SupplyCompany::청솔키친" target="ViolationType::서류_유효기간_만료">
   <data key="d9">VIOLATED</data>
+  <data key="d10">청솔키친.md</data>
+</edge>
+<edge source="SupplyCompany::청솔키친" target="Sanction::서류_보완요청">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">청솔키친.md</data>
 </edge>
 <edge source="SupplyCompany::청솔푸드" target="RegionalOffice::제주지역본부">
@@ -3800,6 +3892,10 @@
   <data key="d9">VIOLATED</data>
   <data key="d10">한마루수산.md</data>
 </edge>
+<edge source="SupplyCompany::한마루수산" target="Sanction::이용제한_3개월">
+  <data key="d9">RESULTS_IN</data>
+  <data key="d10">한마루수산.md</data>
+</edge>
 <edge source="SupplyCompany::해맑은축산" target="RegionalOffice::충북지역본부">
   <data key="d9">LOCATED_IN</data>
   <data key="d10">해맑은축산.md</data>
@@ -3874,6 +3970,10 @@
 </edge>
 <edge source="SupplyCompany::해맑은축산" target="ViolationType::타업체와_사업장_미분리">
   <data key="d9">VIOLATED</data>
+  <data key="d10">해맑은축산.md</data>
+</edge>
+<edge source="SupplyCompany::해맑은축산" target="Sanction::서류_보완요청">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">해맑은축산.md</data>
 </edge>
 <edge source="SupplyCompany::해오름유통" target="RegionalOffice::경남지역본부">
@@ -4002,6 +4102,10 @@
 </edge>
 <edge source="SupplyCompany::행복F&amp;B" target="ViolationType::건강진단서_미구비">
   <data key="d9">VIOLATED</data>
+  <data key="d10">행복F&amp;B.md</data>
+</edge>
+<edge source="SupplyCompany::행복F&amp;B" target="Sanction::현장심사_불합격">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">행복F&amp;B.md</data>
 </edge>
 <edge source="SupplyCompany::행복물류" target="RegionalOffice::서울지역본부">
@@ -4146,6 +4250,10 @@
 </edge>
 <edge source="SupplyCompany::황금축산" target="ViolationType::옥외_탈부착간판">
   <data key="d9">VIOLATED</data>
+  <data key="d10">황금축산.md</data>
+</edge>
+<edge source="SupplyCompany::황금축산" target="Sanction::이용제한_1개월">
+  <data key="d9">RESULTS_IN</data>
   <data key="d10">황금축산.md</data>
 </edge>
 <edge source="ViolationType::정기소독_미실시" target="Regulation::식품위생법">

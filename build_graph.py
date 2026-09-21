@@ -120,6 +120,12 @@ def extract_case_doc(g, case):
 
     for s in case["sanctions"]:
         s_node = add_node(g, "Sanction", s)
+        # 업체 -> 제재 직접 엣지. ViolationType -> Sanction 만 있으면 같은 위반유형을
+        # 공유하는 업체들의 제재가 한 엣지에 뭉뚱그려져(source_docs만 여러 개), 답변
+        # 생성·검증 단계에서 "이 업체가 정확히 어떤 제재를 받았는지"를 간접 추론해야
+        # 했다 — 실제로 이 간접성 때문에 검증기가 틀린 값을 못 고치고 통째로 들어내는
+        # 사례가 나왔다(REPORT.md 3절/6절). 업체별 사실을 엣지 하나로 직접 조회 가능하게 한다.
+        add_edge(g, company, "RESULTS_IN", s_node, file)
         for v_node in violation_nodes:
             add_edge(g, v_node, "RESULTS_IN", s_node, file)
 

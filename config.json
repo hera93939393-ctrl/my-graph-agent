@@ -16,6 +16,7 @@
     ["SupplyCompany", "HOLDS", "Certification"],
     ["SupplyCompany", "SUBMITTED", "DocumentType"],
     ["SupplyCompany", "VIOLATED", "ViolationType"],
+    ["SupplyCompany", "RESULTS_IN", "Sanction"],
     ["ViolationType", "RESULTS_IN", "Sanction"],
     ["HandlingItem", "REQUIRES", "Certification"],
     ["DocumentType", "GOVERNED_BY", "Regulation"]
